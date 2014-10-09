@@ -40,7 +40,7 @@ RSpec.describe PeopleController, :type => :controller do
     it "assigns all people as @people" do
       person = Person.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:people)).to eq(Person.all)
+      expect(assigns(:people)).to eq(Person.all) 
     end
   end
 
