@@ -24,7 +24,7 @@ RSpec.describe PeopleController, :type => :controller do
   # Person. As you add validations to Person, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { first_name: "John", last_name: "Doe" }
   }
 
   let(:invalid_attributes) {
@@ -40,7 +40,7 @@ RSpec.describe PeopleController, :type => :controller do
     it "assigns all people as @people" do
       person = Person.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:people)).to eq([person])
+      expect(assigns(:people)).to eq(Person.all)
     end
   end
 
