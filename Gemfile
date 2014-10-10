@@ -23,6 +23,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'spring'
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
 group :production do
