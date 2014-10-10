@@ -24,7 +24,7 @@ RSpec.describe PhoneNumbersController, :type => :controller do
   # PhoneNumber. As you add validations to PhoneNumber, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { number: "8705559876", person_id: 1 }
   }
 
   let(:invalid_attributes) {
@@ -40,7 +40,7 @@ RSpec.describe PhoneNumbersController, :type => :controller do
     it "assigns all phone_numbers as @phone_numbers" do
       phone_number = PhoneNumber.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:phone_numbers)).to eq([phone_number])
+      expect(assigns(:phone_numbers)).to eq(PhoneNumber.all)
     end
   end
 
