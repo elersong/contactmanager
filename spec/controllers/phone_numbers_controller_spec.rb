@@ -60,11 +60,13 @@ RSpec.describe PhoneNumbersController, :type => :controller do
   end
 
   describe "GET edit" do
+    
     it "assigns the requested phone_number as @phone_number" do
       phone_number = PhoneNumber.create! valid_attributes
       get :edit, {:id => phone_number.to_param}, valid_session
       expect(assigns(:phone_number)).to eq(phone_number)
     end
+    
   end
 
   describe "POST create" do
@@ -89,6 +91,7 @@ RSpec.describe PhoneNumbersController, :type => :controller do
         post :create, {:phone_number => valid_attributes}, valid_session
         expect(response).to redirect_to(alice)
       end
+      
     end
 
     describe "with invalid params" do
@@ -106,6 +109,10 @@ RSpec.describe PhoneNumbersController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
+      
+      let(:bob) { Person.create(first_name: 'Bob', last_name: 'Jones') }
+      let(:valid_attributes) { {number: '555-5678', person_id: bob.id} }
+      
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
       }
@@ -123,10 +130,10 @@ RSpec.describe PhoneNumbersController, :type => :controller do
         expect(assigns(:phone_number)).to eq(phone_number)
       end
 
-      it "redirects to the phone_number" do
+      it "redirects to the phone_number's person" do
         phone_number = PhoneNumber.create! valid_attributes
         put :update, {:id => phone_number.to_param, :phone_number => valid_attributes}, valid_session
-        expect(response).to redirect_to(phone_number)
+        expect(response).to redirect_to(bob)
       end
     end
 
