@@ -23,8 +23,12 @@ RSpec.describe EmailAddressesController, :type => :controller do
   # This should return the minimal set of attributes required to create a valid
   # EmailAddress. As you add validations to EmailAddress, be sure to
   # adjust the attributes here as well.
+  let(:alice) { 
+    Person.create(first_name: "Alice", last_name: "Johnston") 
+  }
+  
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { address: "alice@thisemail.com", person_id: alice.id }
   }
 
   let(:invalid_attributes) {
@@ -40,7 +44,7 @@ RSpec.describe EmailAddressesController, :type => :controller do
     it "assigns all email_addresses as @email_addresses" do
       email_address = EmailAddress.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:email_addresses)).to eq([email_address])
+      expect(assigns(:email_addresses)).to eq(EmailAddress.all)
     end
   end
 
@@ -69,6 +73,7 @@ RSpec.describe EmailAddressesController, :type => :controller do
 
   describe "POST create" do
     describe "with valid params" do
+      
       it "creates a new EmailAddress" do
         expect {
           post :create, {:email_address => valid_attributes}, valid_session
@@ -83,7 +88,7 @@ RSpec.describe EmailAddressesController, :type => :controller do
 
       it "redirects to the created email_address" do
         post :create, {:email_address => valid_attributes}, valid_session
-        expect(response).to redirect_to(EmailAddress.last)
+        expect(response).to redirect_to(alice)
       end
     end
 
