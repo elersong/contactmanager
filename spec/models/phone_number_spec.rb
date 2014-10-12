@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PhoneNumber, :type => :model do
   
-  let(:phone_number) { PhoneNumber.new(number:"8705551234", person_id: 1) }
+  let(:phone_number) { PhoneNumber.new(number:"8705551234", contact_id: 1, contact_type: "Person") }
   
   it 'is valid' do
     expect(phone_number).to be_valid
@@ -14,12 +14,12 @@ RSpec.describe PhoneNumber, :type => :model do
   end
   
   it 'must have a reference to a person' do
-    phone_number.person_id = nil
+    phone_number.contact_id = nil
     expect(phone_number).to_not be_valid
   end
   
   it 'is associated with (and responds to) a person' do
-    expect(phone_number).to respond_to(:person)
+    expect(phone_number).to respond_to(:contact)
   end
   
 end
