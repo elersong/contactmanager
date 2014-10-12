@@ -18,8 +18,9 @@ RSpec.describe Company, :type => :model do
   end
   
   it 'responds with its phone numbers after theyre created' do
-    phone_number = company.phone_numbers.build(number: '333-4444')
-    expect(phone_number).to eq('333-4444')
+    company.save
+    phone_number = company.phone_numbers.create(number: '333-4444')
+    expect(phone_number.number).to eq('333-4444')
   end
   
 end
