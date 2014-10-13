@@ -1,19 +1,21 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
-
-<p>Phone Numbers:</p>
-<%= render 'phone_numbers/phone_numbers', :phone_numbers => @company.phone_numbers %>
-
-<p>Email Addresses:</p>
-<ul>
-	<%= render 'email_addresses/email_addresses', :email_addresses => @company.email_addresses %>
-</ul>
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %> | 
-<%= link_to 'Add Phone Number', new_phone_number_path(contact_id: @company.id, contact_type: "Company") %> | 
-<%= link_to 'Add Email Address', new_email_address_path(contact_id: @company.id, contact_type: "Company")%>
+<div class="company">	
+	<p id="notice"><%= notice %></p>
+	
+	<p>
+	  <strong>Name:</strong>
+	  <%= @company.name %>
+	</p>
+	
+	<p>Phone Numbers:</p>
+	<%= render 'phone_numbers/phone_numbers', :phone_numbers => @company.phone_numbers %>
+	
+	<p>Email Addresses:</p>
+		<%= render 'email_addresses/email_addresses', :email_addresses => @company.email_addresses %>
+	
+	<ul class="actions">
+		<li><%= link_to 'Edit', edit_company_path(@company) %></li>
+		<li><%= link_to 'Back', companies_path %></li>
+		<li><%= link_to 'Add Phone Number', new_phone_number_path(contact_id: @company.id, contact_type: "Company") %></li>
+		<li><%= link_to 'Add Email Address', new_email_address_path(contact_id: @company.id, contact_type: "Company")%></li>
+	</ul>
+</div>

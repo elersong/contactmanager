@@ -1,6 +1,10 @@
 <ul>
 <% email_addresses.each do |email| %>
-		<li><%= email.address %> | <%= link_to "edit", edit_email_address_path(email) %> | 
-			<%= link_to "delete", email_address_path(email), method: :delete, data: {confirm: "DELETE: Are you sure?"} %> </li>
+		<li><%= email.address %> 
+			<ul class="actions"> 
+				<li><%= link_to "edit", edit_email_address_path(email) %></li>
+				<li><%= link_to "delete", email_address_path(email), method: :delete, data: {confirm: "DELETE: Are you sure?"} %></li> 
+			</ul>	
+		</li>
 <% end %>
 </ul>

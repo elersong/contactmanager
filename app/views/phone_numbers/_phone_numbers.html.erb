@@ -1,6 +1,10 @@
 <ul>
-	<% phone_numbers.each do |phone| %>
-		<li><%= phone.number %> | <%= link_to "edit", edit_phone_number_path(phone) %> | 
-			<%= link_to "delete", phone_number_path(phone), method: :delete, data: {confirm: "DELETE: Are you sure?"} %> </li>
-	<% end %>
+<% phone_numbers.each do |phone| %>
+		<li><%= phone.number %> 
+			<ul class="actions"> 
+				<li><%= link_to "edit", edit_phone_number_path(phone) %></li>
+				<li><%= link_to "delete", phone_number_path(phone), method: :delete, data: {confirm: "DELETE: Are you sure?"} %></li> 
+			</ul>	
+		</li>
+<% end %>
 </ul>
