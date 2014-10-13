@@ -17,20 +17,18 @@ RSpec.describe Company, :type => :model do
     expect(company.phone_numbers).to eq([])
   end
   
-  it 'responds with its phone numbers after theyre created' do
-    company.save
-    phone_number = company.phone_numbers.create(number: '333-4444')
-    expect(phone_number.number).to eq('333-4444')
-  end
-  
   it 'has an array of email addresses' do
     expect(company.email_addresses).to eq([])
   end
   
-  it 'responds with its email addresses after theyre created' do
-    company.save
-    email_address = company.email_addresses.create(address: "company@companyemail.com")
-    expect(email_address.address).to eq("company@companyemail.com")
+  it 'responds with its created phone numbers' do
+    company.phone_numbers.build(number: '555-8888')
+    expect(company.phone_numbers.map(&:number)).to eq(['555-8888'])
+  end
+
+  it 'responds with its created email addresses' do
+    company.email_addresses.build(address: 'me@example.com')
+    expect(company.email_addresses.map(&:address)).to eq(['me@example.com'])
   end
   
 end
