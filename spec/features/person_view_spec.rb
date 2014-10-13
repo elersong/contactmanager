@@ -61,8 +61,8 @@ describe 'the person view', type: :feature do
     let(:person) { Person.create(first_name: "John", last_name: "Adams") }
     
     before(:each) do
-      person.email_addresses.create(address: "sample@sample.org", person_id: person.id)
-      person.email_addresses.create(address:"this@that.net", person_id: person.id)
+      person.email_addresses.create(address: "sample@sample.org", contact_id: person.id, contact_type: "Person")
+      person.email_addresses.create(address:"this@that.net", contact_id: person.id, contact_type: "Person")
       visit person_path(person)
     end
     
@@ -72,7 +72,7 @@ describe 'the person view', type: :feature do
     end
     
     it 'has an "add email address" link' do
-      expect(page).to have_link("Add Email Address", href: new_email_address_path(person_id: person.id))
+      expect(page).to have_link("Add Email Address", href: new_email_address_path(contact_id: person.id, contact_type: "Person"))
     end
     
     it 'adds a new email address to page' do

@@ -6,8 +6,13 @@
 </p>
 
 <p>
-  <strong>Person:</strong>
-  <%= @email_address.person_id %>
+  <strong>Contact ID:</strong>
+  <%= @email_address.contact_id %>
+</p>
+
+<p>
+  <strong>Contact Type:</strong>
+  <%= @email_address.contact_type %>
 </p>
 
 <%= link_to 'Edit', edit_email_address_path(@email_address) %> |
