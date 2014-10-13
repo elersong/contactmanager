@@ -24,11 +24,11 @@ RSpec.describe CompaniesController, :type => :controller do
   # Company. As you add validations to Company, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: "ControllerTestCompany" }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    skip("Add hash of attributes invalid for your model")
   }
 
   # This should return the minimal set of values that should be in the session
@@ -40,7 +40,7 @@ RSpec.describe CompaniesController, :type => :controller do
     it "assigns all companies as @companies" do
       company = Company.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:companies)).to eq([company])
+      expect(assigns(:companies)).to eq(Company.all)
     end
   end
 
