@@ -28,7 +28,7 @@ RSpec.describe EmailAddressesController, :type => :controller do
   }
   
   let(:valid_attributes) {
-    { address: "alice@thisemail.com", person_id: alice.id }
+    { address: "alice@thisemail.com", contact_id: alice.id, contact_type: "Person" }
   }
 
   let(:invalid_attributes) {
@@ -124,10 +124,10 @@ RSpec.describe EmailAddressesController, :type => :controller do
         expect(assigns(:email_address)).to eq(email_address)
       end
 
-      it "redirects to the email_address' associated person" do
+      it "redirects to the email_address' associated contact" do
         email_address = EmailAddress.create! valid_attributes
         put :update, {:id => email_address.to_param, :email_address => valid_attributes}, valid_session
-        expect(response).to redirect_to(email_address.person)
+        expect(response).to redirect_to(email_address.contact)
       end
     end
 
