@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :people
   
-  resource :sessions, :only => [:create]
+  resource :sessions, :only => [:create, :destroy]
   
   get '/auth/:provider/callback' => 'sessions#create'
   
