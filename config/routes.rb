@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :companies
 
   resources :email_addresses, :except => [:index, :show]
@@ -11,8 +12,10 @@ Rails.application.routes.draw do
   
   get '/auth/:provider/callback' => 'sessions#create'
   
-  root to: 'companies#index'
+  match "/login" => redirect("/auth/twitter"), as: :login, via: [:get, :post]
+  delete "/logout" => "sessions#destroy", as: :logout
   
+  root to: 'companies#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
