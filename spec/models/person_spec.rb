@@ -3,9 +3,8 @@ require 'rails_helper'
 # this block will wrap all of the tests for Person model
 RSpec.describe Person, :type => :model do
   
-  let(:person) do
-    Person.new(first_name: "Alice", last_name: "Cooper")
-  end
+  # spec/fabricators/person_fabricator.rb
+  let(:person) { Fabricate(:person) }
   
   it 'is valid' do
     expect(person).to be_valid
@@ -29,6 +28,10 @@ RSpec.describe Person, :type => :model do
   it 'responds with its created email addresses' do
     person.email_addresses.build(address: 'me@example.com')
     expect(person.email_addresses.map(&:address)).to eq(['me@example.com'])
+  end
+  
+  it 'belongs to an associated user' do
+    expect(person.user).to be_instance_of(User)
   end
   
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Company, :type => :model do
   
-   let(:company) { Company.new(name: "the example company") }
+   let(:company) { Fabricate(:company) }
    
   it 'is valid' do
     expect(company).to be_valid

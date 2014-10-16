@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'pry'
+  gem 'fabrication' # Factory for testing
 end
 
 group :production do

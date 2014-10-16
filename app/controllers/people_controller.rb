@@ -3,8 +3,9 @@ class PeopleController < ApplicationController
 
   # GET /people
   # GET /people.json
+  # Rather than query for ALL people in the database, only display all associated people for current user
   def index
-    @people = Person.all
+    @people = current_user.people
   end
 
   # GET /people/1
@@ -14,7 +15,7 @@ class PeopleController < ApplicationController
 
   # GET /people/new
   def new
-    @person = Person.new
+    @person = Person.new(user_id: current_user.id)
   end
 
   # GET /people/1/edit
@@ -69,6 +70,6 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:first_name, :last_name)
+      params.require(:person).permit(:first_name, :last_name, :user_id)
     end
 end

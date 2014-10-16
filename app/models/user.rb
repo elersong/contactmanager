@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :people
+  has_many :companies
   
   def self.find_or_create_by_auth(data)
     if User.where(name: data['info']['name']) != []
