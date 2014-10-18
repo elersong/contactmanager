@@ -31,7 +31,7 @@ RSpec.describe Person, :type => :model do
   end
   
   it 'belongs to an associated user' do
-    expect(person.user).to be_instance_of(User)
+    expect(person.user.class).to eq(User)
   end
   
 end

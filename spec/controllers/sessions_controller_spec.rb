@@ -21,7 +21,7 @@ describe SessionsController, type: :controller do
       }
       post :create
       user = User.find_by_uid_and_provider('abc123', 'twitter')
-      expect(controller.current_user.id).to eq(user.id)
+      expect(controller.send(:current_user).id).to eq(user.id)
     end
 
     it "logs-in existing user from twitter data" do
@@ -33,7 +33,7 @@ describe SessionsController, type: :controller do
       user = User.where(name: @request.env["omniauth.auth"]['info']['name'])
       post :create
       expect(user.count).to eq(1)
-      expect(controller.current_user.id).to eq(user.first.id)
+      expect(controller.send(:current_user).id).to eq(user.first.id)
     end
     
     it 'redirects to the companies index page' do
@@ -53,7 +53,7 @@ describe SessionsController, type: :controller do
     
     it "logs out the current user" do
       delete :destroy
-      expect(session["user_id"]).to eq(nil)
+      expect(session[:user_id]).to eq(nil)
     end
     
     it "redirects user to the root path" do

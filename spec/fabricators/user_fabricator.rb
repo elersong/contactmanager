@@ -1,5 +1,5 @@
 Fabricator(:user) do
-  name "Sample User"
+  name "Fabricated User"
   provider 'twitter'
   uid {Fabricate.sequence(:uid)}
 end

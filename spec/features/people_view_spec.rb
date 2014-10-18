@@ -9,13 +9,14 @@ describe 'the people view', type: :feature do
   context 'when logged in' do
     let(:user) { Fabricate(:user) }
     
+    
     it 'displays people associated with the current user' do
       person_1 = Fabricate(:person)
       person_1.user = user
       person_1.save
       login_as(user)
       visit(people_path)
-      binding.pry
+      #binding.pry
       expect(page).to have_text(person_1.first_name)
     end
     

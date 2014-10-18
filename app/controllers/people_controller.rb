@@ -1,3 +1,5 @@
+require 'pry'
+
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
@@ -5,7 +7,11 @@ class PeopleController < ApplicationController
   # GET /people.json
   # Rather than query for ALL people in the database, only display all associated people for current user
   def index
-    @people = current_user.people
+    if current_user
+      @people = current_user.people
+    else
+      redirect_to '/login'
+    end
   end
 
   # GET /people/1

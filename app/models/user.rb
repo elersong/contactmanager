@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   has_many :companies
   
   def self.find_or_create_by_auth(data)
-    if User.where(name: data['info']['name']) != []
+    if User.where(name: data['info']['name'], uid: data['uid'], provider: data['provider']).count != 0
       # Do nothing, because the array with the user records includes at least one user with this name already
-      user = User.where(name: data['info']['name']).first
+      user = User.where(name: data['info']['name'], uid: data['uid'], provider: data['provider']).last
     else
       # If the hash is empty, then no users have registered this name/uid. 
       # It is safe to create a new User. 
